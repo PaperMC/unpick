@@ -16,10 +16,10 @@ allprojects {
 	apply plugin: 'checkstyle'
 	apply plugin: 'com.diffplug.spotless'
 
-	group = 'net.fabricmc.unpick'
+	group = 'io.papermc.unpick'
 
 	def ENV = System.getenv()
-	version = "3.0.0-beta.13"
+	version = "3.0.0-SNAPSHOT"
 	version = version + (ENV.GITHUB_ACTIONS ? "" : "+local")
 
 	repositories {
@@ -84,15 +84,10 @@ allprojects {
 	if (!project.name.startsWith('test-data')) {
 		publishing {
 			repositories {
-				if (ENV.MAVEN_URL) {
-					repositories.maven {
-						name "fabric"
-						url ENV.MAVEN_URL
-						credentials {
-							username ENV.MAVEN_USERNAME
-							password ENV.MAVEN_PASSWORD
-						}
-					}
+				repositories.maven {
+					name "paper"
+					url "https://artifactory.papermc.io/artifactory/snapshots/"
+					credentials(PasswordCredentials)
 				}
 			}
 			publications {
