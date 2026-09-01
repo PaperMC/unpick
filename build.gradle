@@ -81,12 +81,16 @@ allprojects {
 		}
 	}
 
+	var paperRepo = project.version.toString().endsWith("-SNAPSHOT")
+		? "https://artifactory.papermc.io/artifactory/snapshots/"
+		: "https://artifactory.papermc.io/artifactory/releases/"
+
 	if (!project.name.startsWith('test-data')) {
 		publishing {
 			repositories {
 				repositories.maven {
-					name "paper"
-					url "https://artifactory.papermc.io/artifactory/snapshots/"
+					name = "paper"
+					url = paperRepo
 					credentials(PasswordCredentials)
 				}
 			}
@@ -109,4 +113,10 @@ test {
 	dependsOn tasks.getByPath(':test-data-expected:classes')
 	systemProperties testData: project(':test-data').sourceSets.main.java.destinationDirectory.get().asFile.absolutePath,
 		testDataExpected: project(':test-data-expected').sourceSets.main.java.destinationDirectory.get().asFile.absolutePath
+}
+
+tasks.register("printVersion") {
+	doFirst {
+		println(version)
+	}
 }
