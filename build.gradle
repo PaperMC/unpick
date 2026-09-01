@@ -19,7 +19,7 @@ allprojects {
 	group = 'io.papermc.unpick'
 
 	def ENV = System.getenv()
-	version = "3.0.0"
+	version = "3.0.1-SNAPSHOT"
 	version = version + (ENV.GITHUB_ACTIONS ? "" : "+local")
 
 	repositories {
