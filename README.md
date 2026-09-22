@@ -2,4 +2,4 @@
 
 Unpick is a minimal Java constant uninlining library. It depends only on ObjectWeb ASM.
 
-<img src="https://papermc.io/assets/misc/namespace-oss-badge.svg?project=unpick" alt="CI powered by namespace badge" />
+[![CI powered by namespace badge](https://papermc.io/assets/misc/namespace-oss-badge.svg?project=unpick)](https://namespace.so/github-actions/?utm_source=oss&utm_campaign=papermc)
